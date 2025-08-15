@@ -55,12 +55,6 @@ try {
         if (!is_numeric($v)) return null;
         return number_format((float)$v, 2, '.', '');
     };
-    $isHttpUrl  = function ($u) use ($MAX_URL_LEN) {
-        if ($u === null) return true;
-        if (mb_strlen($u) > $MAX_URL_LEN) return false;
-        if (!preg_match('~^https?://~i', $u)) return false;
-        return (bool) filter_var($u, FILTER_VALIDATE_URL);
-    };
 
 
     $fields = [];
@@ -134,11 +128,8 @@ try {
             if (!preg_match('~^https?://~i', $link)) $link = 'https://' . $link;
             $link = preg_replace('/\s+/', '%20', $link);
         }
-        if ($link !== null && !$isHttpUrl($link)) $errors['link'] = 'Link must be a valid http(s) URL.';
-        else {
-            $fields[] = 'link = :link';
-            $params[':link'] = $link;
-        }
+        $fields[] = 'link = :link';
+        $params[':link'] = $link;
     }
 
     if ($errors) {

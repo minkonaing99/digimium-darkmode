@@ -47,13 +47,7 @@ try {
         if (!is_numeric($v)) return null;
         return number_format((float)$v, 2, '.', ''); // DECIMAL(10,2) safe string
     };
-    $isHttpUrl = function ($u) use ($MAX_URL_LEN) {
-        if ($u === null) return true;
-        if (mb_strlen($u) > $MAX_URL_LEN) return false;
-        if (!filter_var($u, FILTER_VALIDATE_URL)) return false;
-        $scheme = parse_url($u, PHP_URL_SCHEME);
-        return in_array($scheme, ['http', 'https'], true);
-    };
+
 
     // Extract & normalize
     $product_name = $trimOrNull($data['product_name'] ?? null);
@@ -99,9 +93,7 @@ try {
         $errors['retail_price'] = 'Retail must be greater than WC price.';
     }
 
-    if ($link !== null && !$isHttpUrl($link)) {
-        $errors['link'] = 'Link must be a valid http(s) URL (≤ 2083 chars).';
-    }
+
 
     if ($errors) {
         http_response_code(422);
