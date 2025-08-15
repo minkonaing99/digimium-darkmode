@@ -4,7 +4,7 @@ declare(strict_types=1);
 require __DIR__ . '/api/session_bootstrap.php';
 require __DIR__ . '/api/auth.php';
 
-auth_require_login(['admin', 'staff']);
+auth_require_login(['owner', 'admin', 'staff']);
 ?>
 
 <?php
@@ -17,7 +17,7 @@ $user = htmlspecialchars($_SESSION['user']['username'] ?? 'Guest', ENT_QUOTES);
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Eraverse • Product Catalog</title>
+    <title>Digimium • Product Catalog</title>
     <link rel="stylesheet" href="./style/style.min.css">
     <link rel="stylesheet" href="./style/product_catalog.min.css">
 </head>
@@ -25,13 +25,13 @@ $user = htmlspecialchars($_SESSION['user']['username'] ?? 'Guest', ENT_QUOTES);
 <body>
     <header id="navbar">
         <div class="logo" aria-label="Home">
-            <a href="./sales_overview.php"><img src="./assets/logo_digimium.jpg" alt="Logo"></a>
+            <a href="./sales_overview.php"><img src="./assets/logo_digimium.png" alt="Logo"></a>
         </div>
 
         <nav aria-label="Primary">
             <div class="nav-links" id="navLinks">
                 <a href="sales_overview.php">Sales Overview</a>
-                <?php if (($_SESSION['user']['role'] ?? '') === 'admin'): ?>
+                <?php if (in_array($_SESSION['user']['role'] ?? '', ['owner', 'admin'])): ?>
                     <a href="product_catalog.php" aria-label="Product Catalog">Product Catalog</a>
                     <a href="summary.php" aria-label="Summary">Summary</a>
                 <?php endif; ?>
