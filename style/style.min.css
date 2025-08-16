@@ -271,6 +271,20 @@ main.page {
     vertical-align: middle
 }
 
+.era-table td.era-elli {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle
+}
+
+.era-table td.era-prod {
+    max-width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle
+}
+
 .era-icon-btn {
     appearance: none;
     border: 0;

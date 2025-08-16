@@ -278,6 +278,7 @@ document
     tdNum.textContent = String(displayNum);
 
     const tdProd = document.createElement("td");
+    tdProd.className = "era-prod";
     tdProd.textContent = s.product_name ?? "-";
 
     const tdDur = document.createElement("td");
@@ -298,7 +299,7 @@ document
       return td;
     };
 
-    const tdCustomer = makeEditable("customer", s.customer);
+    const tdCustomer = makeEditable("customer", s.customer, "era-elli");
     const tdEmail = makeEditable("gmail", s.gmail, "era-muted");
 
     const tdPurchased = document.createElement("td");
@@ -309,7 +310,7 @@ document
     tdExpired.className = "text-center";
     tdExpired.textContent = formatDate(s.end_date);
 
-    const tdManager = makeEditable("seller", s.seller, "column-hide");
+    const tdManager = makeEditable("seller", s.seller, "era-muted column-hide");
     const tdNote = makeEditable("note", s.note, "era-muted column-hide");
 
     const tdPrice = document.createElement("td");
