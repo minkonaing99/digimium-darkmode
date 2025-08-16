@@ -59,7 +59,8 @@
 
 .input:focus {
     background: #2a2f3d;
-    border-color: var(--primary);
+    border-color: #316d88;
+
     box-shadow: 0 0 0 2px rgba(106, 137, 167, .25)
 }
 
